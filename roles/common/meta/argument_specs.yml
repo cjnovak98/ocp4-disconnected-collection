@@ -1,0 +1,109 @@
+argument_specs:
+  common_git_repos:
+    type: list
+    elements: str
+    description: |
+      List of Git repositories to clone, typically used for setting up OCP disconnected environments.
+    required: false
+    default: []
+
+  common_install_dir:
+    type: str
+    description: |
+      Directory where common components like binaries and configurations will be installed.
+    required: false
+    default: "{{ ansible_user_dir }}"
+
+  common_trident_version:
+    type: str
+    description: |
+      Version of Trident to install. Typically, the version needed for managing storage on OpenShift clusters.
+    required: false
+    default: "v24.06.0"
+
+  common_fips_enabled:
+    type: bool
+    description: |
+      Flag to determine if the installation should enforce FIPS compliance.
+    required: false
+    default: true
+
+  common_openshift_client_bin:
+    type: str
+    description: |
+      Path to the directory where OpenShift client binaries are stored.
+    required: true
+
+  common_openshift_oc_mirror_dir:
+    type: str
+    description: |
+      Directory where the OpenShift OC Mirror tool and its content are stored.
+    required: true
+
+  common_openshift_download_dir:
+    type: str
+    description: |
+      Directory for storing downloaded resources related to OpenShift installation.
+    required: true
+
+  common_git_repos_dir:
+    type: str
+    description: |
+      Directory for storing cloned Git repositories.
+    required: true
+
+  common_openshift_release:
+    type: str
+    description: |
+      Version of OpenShift to install or manage.
+    required: true
+    default: "4.14.16"
+
+  common_registry_volume:
+    type: str
+    description: |
+      Path to the registry volume for storing OpenShift content.
+    required: true
+    default: "/pods/registry"
+
+  common_ip_space:
+    type: str
+    description: |
+      Base IP address for the OpenShift cluster network.
+    required: true
+    default: "192.168.69"
+
+  common_subnet_mask:
+    type: int
+    description: |
+      Subnet mask for the OpenShift cluster network.
+    required: true
+    default: 24
+
+  common_gateway_ip:
+    type: str
+    description: |
+      Gateway IP address for the OpenShift cluster.
+    required: true
+    default: "{{ common_ip_space }}.1"
+
+  common_ssh_key:
+    type: str
+    description: |
+      Path to the SSH private key to be used for OpenShift installations.
+    required: true
+    default: "{{ ansible_user_dir + '/.ssh/id_rsa' }}"
+
+  common_registry_port:
+    type: int
+    description: |
+      Port for the hosted OpenShift registry.
+    required: true
+    default: 5001
+
+  common_connected_cluster:
+    type: bool
+    description: |
+      Specifies whether the OpenShift cluster is connected to the internet for installation purposes.
+    required: false
+    default: true

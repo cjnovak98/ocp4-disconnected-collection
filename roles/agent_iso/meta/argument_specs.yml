@@ -1,0 +1,101 @@
+argument_specs:
+  agent_iso_cluster_fqdn:
+    type: str
+    description: |
+      Fully qualified domain name (FQDN) for the OpenShift cluster. Derived from the cluster name and the common domain.
+    required: true
+    default: "{{ agent_iso_cluster_name }}.{{ common_cluster_domain }}"
+
+  agent_iso_connected:
+    type: bool
+    description: |
+      Determines whether the system is connected to the internet. When set to false, agent_iso runs in a disconnected mode.
+    required: false
+    default: true
+
+  agent_iso_openshift_cluster_config_dir:
+    type: str
+    description: |
+      Directory where the OpenShift cluster configuration files are stored.
+    required: true
+    default: "{{ common_openshift_cluster_install_dir }}/configs"
+
+  agent_iso_network_checks:
+    type: bool
+    description: |
+      Flag to enable or disable network checks when generating the agent ISO.
+    required: false
+    default: false
+
+  agent_iso_cluster_name:
+    type: str
+    description: |
+      The name of the OpenShift cluster for the agent ISO.
+    required: true
+    default: ocp-sno
+
+  agent_iso_dns_resolver:
+    type: str
+    description: |
+      IP address of the DNS resolver for the agent ISO installation.
+    required: true
+    default: '{{ common_ip_space }}.1'
+
+  agent_iso_table_id:
+    type: int
+    description: |
+      Network table ID for agent ISO.
+    required: true
+    default: 254
+
+  agent_iso_cluster_cidr:
+    type: str
+    description: |
+      Cluster CIDR for the OpenShift installation.
+    required: true
+    default: '{{ common_ip_space }}.0/{{ common_subnet_mask }}'
+
+  common_openshift_cluster_install_dir:
+    type: str
+    description: |
+      Path to the directory where OpenShift cluster installation files are generated.
+    required: true
+
+  common_fips_enabled:
+    type: bool
+    description: |
+      Flag to determine if FIPS-compliant ISO should be generated.
+    required: false
+    default: true
+
+  common_ip_space:
+    type: str
+    description: |
+      Base IP address for the OpenShift cluster network.
+    required: true
+    default: "192.168.69"
+
+  common_openshift_client_bin:
+    type: str
+    description: |
+      Directory path for the OpenShift client binaries.
+    required: true
+
+  common_ssh_key:
+    type: str
+    description: |
+      Path to the SSH private key used for the OpenShift installation.
+    required: true
+    default: "{{ ansible_user_dir + '/.ssh/id_rsa' }}"
+
+  ansible_user_dir:
+    type: str
+    description: |
+      The home directory of the user running the playbook.
+    required: true
+
+  common_cluster_domain:
+    type: str
+    description: |
+      The domain for the OpenShift cluster.
+    required: true
