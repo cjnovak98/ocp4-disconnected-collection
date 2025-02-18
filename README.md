@@ -1,3 +1,5 @@
+# THIS REPO IS ARCHIVED. Further dev will happen on forks of this repo.
+
 # OpenShift Configuration as Code
 
 worker_iso:
